@@ -84,7 +84,10 @@ def change_name(data):
         },
         room = user.room.name_room)
 
-        socket.emit('message',f"{name} ha cambiado a {new_name}",room = user.room.name_room)
+        socket.emit('message',{
+            'action':'name',
+            'message':f"{name} ha cambiado a {new_name}"
+        },room = user.room.name_room)
 @socket.on('disconnect')
 def disconnect():
     user = User.get_user(request.sid)

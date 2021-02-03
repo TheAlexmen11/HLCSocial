@@ -37,7 +37,7 @@ socketio.on('connect',function(){
 //recibir mensajes
 let position = 0
 socketio.on('message',function(data){
-    if(data.action == 'join' || data.action == 'leave'){
+    if(data.action == 'join' || data.action == 'leave' || data.action == 'name'){
         if($('#p-show-message').text().length != 0){
             $('#p-show-message').append('<br>'+data.message)
         }
