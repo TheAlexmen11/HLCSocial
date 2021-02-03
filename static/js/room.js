@@ -1,15 +1,26 @@
 //input-message
 let width_input = $("#input-message").width()
 $("#input-message").css('max-width',`${width_input}px`)
-
-
-$(window).resize(function(){
-    let width_input = $(window).width()-$("#container-contacts").width()-50
-    $("#input-message").css('max-width',`${width_input}px`)
-    console.log("asdasdsad")
-});
-
 //input-message
+
+// show message 
+let width_show = $("#p-show-message").width()
+$("#p-show-message").css('max-width',`${width_show}px`)
+
+let height_show = $("#p-show-message").height()
+$("#p-show-message").css('max-height',`${height_show}px`)
+//show message
+
+//event resze
+$(window).resize(function(){
+    let height_show = $("#container-chat").height()-50
+    $("#p-show-message").css('max-height',`${height_show}px`)
+    let width_show = $(window).width()-$("#container-contacts").width()-60
+    $("#p-show-message").css('max-width',`${width_show}px`)
+    let width_input = $(window).width()-$("#container-contacts").width()-60
+    $("#input-message").css('max-width',`${width_input}px`)
+});
+//event resze
 
 let socketio = io(window.location.protocol+'//'+document.domain+':'+location.port);
 
@@ -24,12 +35,21 @@ socketio.on('connect',function(){
 
 
 //recibir mensajes
+let position = 0
 socketio.on('message',function(data){
-    if($('#p-show-message').text().length != 0){
-        $('#p-show-message').html($('#p-show-message').html()+'<br>'+data)
+    if(data.action == 'join' || data.action == 'leave'){
+        if($('#p-show-message').text().length != 0){
+            $('#p-show-message').append('<br>'+data.message)
+        }
+        else{
+            console.log(data.message);
+            $('#p-show-message').html(data.message)
+        }
     }
     else{
-        $('#p-show-message').html(data)
+        if($('#p-show-message').text().length != 0){
+            $('#p-show-message').append('<br>'+data.user+" dice:"+"<br>"+data.message)
+        }
     }
 })
 //recibir mensajes

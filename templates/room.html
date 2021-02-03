@@ -19,16 +19,16 @@
         <div class="container-contacts" id="container-contacts">
         </div>
         <div class="container-messages">
-            <div class="container-show">
+            <div class="container-show" id="container-show">
                 <p class="p-show-message" id="p-show-message"></p>
             </div>
             <div class="container-input" id="container-input">
                 <p class="p-input-message" id="input-message" contenteditable="true">
-                    
                 </p>
             </div>
         </div>
     </div>
+    <script src = "{{url_for('static',filename='js/live.js')}}"> </script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js"></script> 
     <script src="{{url_for('static',filename='js/room.js')}}"></script>

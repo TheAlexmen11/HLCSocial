@@ -43,7 +43,6 @@ def link_join_room(name_room):
 #socketio
 @socket.on('join_in_room')
 def join_in_room(data):
-    print("brotherrrrrrr")
     name_room = data['name_room']
     join_room(name_room)
     room = Room.get_room(name_room)
@@ -52,7 +51,10 @@ def join_in_room(data):
         room.users.append(user)#aumentamos el numero de usuarios en el salon
         User.users.append(user)#almacenamos usuario
         print(User.users)
-        socket.emit('message',f'{user.nickname} se acaba de unir',room=name_room)
+        socket.emit('message',{
+            'action':'join',
+            'message':f'{user.nickname} se acaba de unir'
+        },room=name_room)
         socket.emit('add_user',{
                 "id_users": (' ').join([i.id_user for i in room.users]),
                 "nickname": (' ').join([i.nickname for i in room.users])
@@ -63,7 +65,11 @@ def join_in_room(data):
 def message(data):
     user = User.get_user(request.sid)
     room = user.room
-    socket.emit('message',f'{user.nickname}: {data["message"]}',room=room.name_room)
+    socket.emit('message',{
+        'action':'message',
+        'user':user.nickname,
+        'message':data["message"]
+    },room=room.name_room)
 
 @socket.on('change_name')
 def change_name(data):
@@ -85,7 +91,10 @@ def disconnect():
     if user != None:
         room = user.room
         leave_room(room.name_room)
-        socket.emit('message',f'{user.nickname} se ha ido',room=room.name_room)
+        socket.emit('message',{
+            'action':'leave',
+            'message':f'{user.nickname} se ha ido'
+        },room=room.name_room)
         socket.emit('delete_name',{
             'id_user':request.sid
         },room=room.name_room)

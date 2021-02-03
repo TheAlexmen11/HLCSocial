@@ -25,9 +25,22 @@ $(".button-create").click(function(){
 
 $("#input-create").keyup(function(event){
     if(event.key == 'Enter'){
-        create_room();
+        if ( $("#input-create").text().trim() == ""){
+            $("#input-create").text("")
+        }
+        else{
+            create_room();
+            $("#input-create").text("")
+        }
+    }
+    
+})
+$("#input-create").keydown(function(event){
+    if(event.key == 'Enter'){
+        $("#input-create").html($("#input-create").text())
     }
 })
+
 
 $(".button-join").click(function(){
     let link = $("#input-join").text();
