@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-container">
+                <div class="header-div-img">
+                    <img class ="header-div-img" src="{{url_for('static',filename='img/hlc.png')}}" alt="hlc social" height="80px" width=""100px>
+                </div>
+                <div class="header-div-title">
+                    <h1 class="header-div-h text">
+                        HLC SOCIAL
+                    </h1>
+                </div>
+            </div>
+        </header>
+        <section><!-- rooms -->
+            <div class="section-div-container">
+                <div class="div-create">
+                    <h2 class="div-create-h text">Crear Sala</h2>
+                    <p class="div-create-p" id="input-create" contenteditable="true"></p>
+                    <button class="button-create" id="button-create">Crear</button>
+                </div>
+                <hr class="sep">
+                <div class="div-join">
+                    <h2 class="div-join-h text">Unirse a sala</h2>
+                    <p class="div-join-p" id="input-join" contenteditable="true"></p>
+                    <button class="button-join" id="button-join">Unirse</button>
+                </div>
+            </div>
+        </section>
+
+        <section><!-- cursos -->
+            <div class="container-courses">
+                <img src="{{url_for('static',filename='img/flask.jpg')}}" alt="curso flask" class="course">
+                <img src="{{url_for('static',filename='img/html_css.jpg')}}" alt="curso html y css" class="course">
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-container">
+                <p class="text">
+                    Contactos: +51 964566201 / +593 97 954 6842
+                </p>
+                <p class="text">
+                    Correo: harolav3@gmail.com
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="{{url_for('static',filename='js/index.js')}}"></script>
+</body>
+</html>
